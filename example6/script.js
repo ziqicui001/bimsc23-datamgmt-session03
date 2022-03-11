@@ -59,14 +59,16 @@ async function compute() {
   //console.log(res);
 
   // doc = new rhino.File3dm;
-  const url = model
-  const res1 = await fetch(url)
-  const buffer1 = await res1.arrayBuffer()
-  doc = rhino.File3dm.fromByteArray(new Uint8Array(buffer1))
+  //const url = model
+  //const res1 = await fetch(url)
+  //const buffer1 = await res1.arrayBuffer()
+  //doc = rhino.File3dm.fromByteArray(new Uint8Array(buffer1))
 
   // hide spinner
   document.getElementById("loader").style.display = "none";
 
+
+ doc = new rhino.File3dm;
   //decode grasshopper objects and put them into a rhino document
   for (let i = 0; i < res.values.length; i++) {
     for (const [key, value] of Object.entries(res.values[i].InnerTree)) {
@@ -79,11 +81,12 @@ async function compute() {
   }
 
 
+
   // clear objects from scene
   scene.traverse((child) => {
-    if (!child.isLight ) {
-      scene.remove(child)
-    }
+    console.log(child)
+    if(!child.isLight && child.hasOwnProperty("keep") && child !== undefined) scene.remove(child)
+
   });
 
   const buffer = new Uint8Array(doc.toByteArray()).buffer;
@@ -92,17 +95,7 @@ async function compute() {
     // go through all objects, check for userstrings and assing colors
 
     object.traverse((child) => {
-      if (child.type === "Mesh" && child.userData.attributes.userStringCount > 0){
-       
-        // get user strings
-        let data, count
-        data = child.userData.attributes.userStrings[0]
-        if (data[0] == "world") child.material.color.set( 'blue' )
-        if (data[0] == "geo") child.material.color.set( 'green' )
-        
-        //console.log(child)
-      }
-      
+      child.keep = false
       
     });
 
