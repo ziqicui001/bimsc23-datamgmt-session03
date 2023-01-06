@@ -1,10 +1,9 @@
 // Import libraries
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.137.5/build/three.module.js";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.137.5/examples/jsm/controls/OrbitControls.js";
-import rhino3dm from "https://cdn.jsdelivr.net/npm/rhino3dm@7.11.1/rhino3dm.module.js";
-import { RhinoCompute } from "https://cdn.jsdelivr.net/npm/compute-rhino3d@0.13.0-beta/compute.rhino3d.module.js";
-import { Rhino3dmLoader } from "https://cdn.jsdelivr.net/npm/three@0.137.5/examples/jsm/loaders/3DMLoader.js";
-
+import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { Rhino3dmLoader } from 'three/addons/loaders/3DMLoader.js'
+import rhino3dm from 'rhino3dm'
+import { RhinoCompute } from 'rhinocompute'
 
 const definitionName = "rnd_node.gh";
 

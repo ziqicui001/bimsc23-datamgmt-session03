@@ -1,11 +1,11 @@
-// import libraries
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.124.0/build/three.module.js'
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.124.0/examples/jsm/controls/OrbitControls.js'
-import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.124.0/examples/jsm/loaders/3DMLoader.js'
+// Import libraries
+import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { Rhino3dmLoader } from 'three/addons/loaders/3DMLoader.js'
 
 // new libraries!
-import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js'
-import { RhinoCompute } from 'https://cdn.jsdelivr.net/npm/compute-rhino3d@0.13.0-beta/compute.rhino3d.module.js'
+import rhino3dm from 'rhino3dm'
+import { RhinoCompute } from 'rhinocompute'
 
 // declare variables to store scene, camera, and renderer
 let scene, camera, renderer
@@ -13,6 +13,7 @@ let scene, camera, renderer
 // set up 3dm loader
 const loader = new Rhino3dmLoader()
 loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
+//loader.setLibraryPath( 'rhino3dm' )
 
 // set up button click handlers
 const booleanButton = document.getElementById("booleanButton")

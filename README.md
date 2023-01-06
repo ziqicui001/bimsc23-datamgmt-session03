@@ -1,6 +1,7 @@
-# lecture3
+Cloud Based Data Management 2023 
+# Session 03
 
-Examples for Lecture 3
+Examples for session 3
 
 These examples introduce how to use RhinoCompute as a remote geometry calculation service.
 
@@ -20,7 +21,7 @@ These examples introduce how to use RhinoCompute as a remote geometry calculatio
 - [rhino3dm.js API reference](https://mcneel.github.io/rhino3dm/javascript/api/index.html)
 - [rhino3dm developer samples](https://github.com/mcneel/rhino-developer-samples/tree/7/rhino3dm)
 
-## Previous lectures
+## Previous sessions
 
-- [Lecture 1](https://github.com/dav-leon/bimsc21-datamgmt) 
-- [Lecture 2](https://github.com/dav-leon/bimsc21-datamgmt-2)
+- [Session 1](https://github.com/iaac-macad/bimsc23-datamgmt-session01) 
+- [Session 2](https://github.com/iaac-macad/bimsc23-datamgmt-session02)
