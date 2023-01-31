@@ -8,10 +8,13 @@ import { RhinoCompute } from 'rhinocompute'
 const definitionName = 'color_test.gh'
 
 // Set up sliders
-const sub_slider = document.getElementById('sub')
-sub_slider.addEventListener('mouseup', onSliderChange, false)
-sub_slider.addEventListener('touchend', onSliderChange, false)
+    //No sliders  needed for these example
+    ////////////////////////////////////
 
+
+// set up button click handlers
+const downloadButton = document.getElementById("downloadButton")
+downloadButton.onclick = download
 
 const loader = new Rhino3dmLoader()
 loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/')
@@ -40,9 +43,6 @@ async function compute() {
 
     //No params needed for these example
     ////////////////////////////////////
-    // const param1 = new RhinoCompute.Grasshopper.DataTree('subdivision')
-    // console.log(sub_slider.valueAsNumber)
-    // param1.append([0], [sub_slider.valueAsNumber])
 
 
     // // clear values
@@ -113,6 +113,9 @@ async function compute() {
         document.getElementById('loader').style.display = 'none'
 
     })
+
+        // enable download button
+        downloadButton.disabled = false
 }
 
 
@@ -172,4 +175,14 @@ function meshToThreejs(mesh, material) {
     const loader = new THREE.BufferGeometryLoader()
     const geometry = loader.parse(mesh.toThreejsJSON())
     return new THREE.Mesh(geometry, material)
+}
+
+// download button handler
+function download () {
+    let buffer = doc.toByteArray()
+    let blob = new Blob([ buffer ], { type: "application/octect-stream" })
+    let link = document.createElement('a')
+    link.href = window.URL.createObjectURL(blob)
+    link.download = 'example4_colors.3dm'
+    link.click()
 }
