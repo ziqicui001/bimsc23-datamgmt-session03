@@ -5,7 +5,7 @@ import { Rhino3dmLoader } from 'three/addons/loaders/3DMLoader.js'
 import rhino3dm from 'rhino3dm'
 import { RhinoCompute } from 'rhinocompute'
 
-const definitionName = "rnd_node.gh";
+const definitionName = "rnd_node_color.gh";
 
 // Set up sliders
 const radius_slider = document.getElementById("radius");
@@ -17,8 +17,7 @@ count_slider.addEventListener("mouseup", onSliderChange, false);
 count_slider.addEventListener("touchend", onSliderChange, false);
 
 const loader = new Rhino3dmLoader();
-loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@7.11.1/");
-
+loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 let rhino, definition, doc;
 rhino3dm().then(async (m) => {
@@ -76,6 +75,24 @@ async function compute() {
   }
 
 
+
+  // go through the objects in the Rhino document
+
+  let objects = doc.objects();
+  for ( let i = 0; i < objects.count; i++ ) {
+  
+    const rhinoObject = objects.get( i );
+
+
+     // asign geometry userstrings to object attributes
+    if ( rhinoObject.geometry().userStringCount > 0 ) {
+      const g_userStrings = rhinoObject.geometry().getUserStrings()
+      rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
+      
+    }
+  }
+
+
   // clear objects from scene
   scene.traverse((child) => {
     if (!child.isLight) {
@@ -94,7 +111,7 @@ async function compute() {
         if (child.userData.attributes.geometry.userStringCount > 0) {
           
           //get color from userStrings
-          const colorData = child.userData.attributes.geometry.userStrings[0]
+          const colorData = child.userData.attributes.userStrings[0]
           const col = colorData[1];
 
           //convert color from userstring to THREE color and assign it
@@ -103,7 +120,6 @@ async function compute() {
           child.material = mat;
         }
       }
-      
     });
 
     ///////////////////////////////////////////////////////////////////////
@@ -170,16 +186,4 @@ function meshToThreejs(mesh, material) {
   const loader = new THREE.BufferGeometryLoader();
   const geometry = loader.parse(mesh.toThreejsJSON());
   return new THREE.Mesh(geometry, material);
-}
-
-function getAuth( key ) {
-  let value = localStorage[key]
-  if ( value === undefined ) {
-      const prompt = key.includes('URL') ? 'Server URL' : 'Server API Key'
-      value = window.prompt('RhinoCompute ' + prompt)
-      if ( value !== null ) {
-          localStorage.setItem( key, value )
-      }
-  }
-  return value
 }

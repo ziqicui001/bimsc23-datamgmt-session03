@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>RhinoCompute: GH SubD Object</title>
+        <title>S1 - Lecture 3 - Example 5</title>
         <style>
             body { margin: 0; font-family: Arial, Helvetica, sans-serif; }
             input {width: 90%;}
@@ -27,23 +27,6 @@
                 100% { transform: rotate(360deg); }
             }
         </style>
-
-        <script type="importmap">
-            {
-                "imports": {
-                "three/examples/jsm/controls/OrbitControls":"./jsm/controls/OrbitControls.js",
-                "three/examples/jsm/libs/stats.module":"./jsm/libs/stats.module.js"
-                
-                "three": "https://unpkg.com/three@0.147.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.147.0/examples/jsm/",
-                "rhino3dm": "https://unpkg.com/rhino3dm@0.15.0-beta/rhino3dm.module.js",
-                "rhinocompute": "https://cdn.jsdelivr.net/npm/compute-rhino3d@0.13.0-beta/compute.rhino3d.module.js"
-                }
-            }
-        </script>
-
-        
-
     </head>
     <body>
         <div id="loader"></div> 
@@ -60,6 +43,16 @@
 
             </div>
         </div>
+        <script type="importmap">
+			{
+				"imports": {
+				  "three": "https://unpkg.com/three@0.147.0/build/three.module.js",
+				  "three/addons/": "https://unpkg.com/three@0.147.0/examples/jsm/",
+                  "rhino3dm": "https://unpkg.com/rhino3dm@0.15.0-beta/rhino3dm.module.js",
+                  "rhinocompute": "https://cdn.jsdelivr.net/npm/compute-rhino3d@0.13.0-beta/compute.rhino3d.module.js"
+				}
+			  }
+		  </script>
         <script type="module" src="script.js"></script>
     </body>
 </html>
