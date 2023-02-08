@@ -87,7 +87,13 @@ async function compute() {
      // asign geometry userstrings to object attributes
     if ( rhinoObject.geometry().userStringCount > 0 ) {
       const g_userStrings = rhinoObject.geometry().getUserStrings()
-      rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
+
+      //iterate through userData and store all userdata to geometry
+      for ( let j = 0; j < g_userStrings.length; j++ ) {
+        rhinoObject.attributes().setUserString(g_userStrings[j][0], g_userStrings[j][1])
+      }
+
+      // rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
       
     }
   }
@@ -104,7 +110,7 @@ async function compute() {
   loader.parse(buffer, function (object) {
 
     // go through all objects, check for userstrings and assing colors
-
+    
     object.traverse((child) => {
       if (child.isLine) {
 
