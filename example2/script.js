@@ -72,8 +72,10 @@ async function compute() {
             for (const d of value) {
 
                 const data = JSON.parse(d.data)
+                //console.log(data)
                 const rhinoObject = rhino.CommonObject.decode(data)
                 doc.objects().add(rhinoObject, null)
+                //console.log(rhinoObject)
 
             }
         }
